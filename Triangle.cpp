@@ -1,38 +1,24 @@
-#include <typeinfo>
-#include <cmath>
+#include "Triangle.h"
 
-class Triangle
-{
-private:
-	double sideAB;
-	double sideBC;
-	double sideAC;
-	double angleA;
-	double angleB;
-	double angleC;
-	const double sumOfInteriorAngels = 180;
-	const double pi = 3.141592;
-
-	bool isTriangle(double side1, double side2, double side3)
+bool Triangle::isTriangle(double side1, double side2, double side3)
 	{
 		return side1 + side2 > side3 && side1 + side3 > side2 && side2 + side3 > side1;
 	}
-	double cosTheoremAngle(double contiguousSide1, double contiguousSide2, double oppositeSide)
+double Triangle::cosTheoremAngle(double contiguousSide1, double contiguousSide2, double oppositeSide)
 	{
 		return acos((contiguousSide1 * contiguousSide1 + contiguousSide2 * contiguousSide2 - oppositeSide * oppositeSide) / (2 * contiguousSide1 * contiguousSide2)) * 180 / pi;
 	}
-	double cosTheoremSide(double contiguousSide1, double contiguousSide2, double angle)
+double Triangle::cosTheoremSide(double contiguousSide1, double contiguousSide2, double angle)
 	{
 		return sqrt(contiguousSide1 * contiguousSide1 + contiguousSide2 * contiguousSide2 - 2 * contiguousSide1 * contiguousSide2 * cos(angle));
 	}
 
-public:
-	Triangle()
+Triangle::Triangle()
 	{
 		sideAB = sideBC = sideAC = 4;
 		angleA = angleB = angleC = 60;
 	}
-	Triangle(double side1, double side2, double side3)
+Triangle::Triangle(double side1, double side2, double side3)
 	{
 		if (isTriangle(side1, side2, side3))
 		{
@@ -46,8 +32,8 @@ public:
 		else
 			throw "Некоректные длинны";
 	}
-	double getSideAB() { return sideAB; }
-	void setSideAB(double ab)
+double Triangle::getSideAB() { return sideAB; }
+void Triangle::setSideAB(double ab)
 	{
 		if (typeid(ab) == typeid(double))
 			if (ab != cosTheoremSide(sideAC, sideBC, angleC))
@@ -65,8 +51,8 @@ public:
 		else
 			throw "Вы ввели не число";
 	}
-	double getSideBC() { return sideBC; }
-	void setSideBC(double bc)
+double Triangle::getSideBC() { return sideBC; }
+void Triangle::setSideBC(double bc)
 	{
 		if (typeid(bc) == typeid(double))
 			if (bc != cosTheoremSide(sideAC, sideAB, angleA))
@@ -86,8 +72,8 @@ public:
 		else
 			throw "Вы ввели не число";
 	}
-	double getSideAC() { return sideAC; }
-	void setSideAC(double ac)
+double Triangle::getSideAC() { return sideAC; }
+void Triangle::setSideAC(double ac)
 	{
 		if (typeid(ac) == typeid(double))
 			if (ac != cosTheoremSide(sideAB, sideBC, angleB))
@@ -108,8 +94,8 @@ public:
 			throw "Вы ввели не число";
 	}
 
-	double getAngleA() { return angleA; }
-	void setAngleA(double a)
+double Triangle::getAngleA() { return angleA; }
+void Triangle::setAngleA(double a)
 	{
 		if (typeid(a) == typeid(double))
 			if (a != cosTheoremAngle(sideAC, sideAB, sideBC))
@@ -122,8 +108,8 @@ public:
 		else
 			throw "Вы ввели не число";
 	}
-	double getAngleB() { return angleB; }
-	void setAngleB(double b)
+double Triangle::getAngleB() { return angleB; }
+void Triangle::setAngleB(double b)
 	{
 		if (typeid(b) == typeid(double))
 			if (b != cosTheoremAngle(sideBC, sideAB, sideAC))
@@ -136,8 +122,8 @@ public:
 		else
 			throw "Вы ввели не число";
 	}
-	double getAngleC() { return angleC; }
-	void setAngleC(double c)
+double Triangle::getAngleC() { return angleC; }
+void Triangle::setAngleC(double c)
 	{
 		if (typeid(c) == typeid(double))
 			if (c != cosTheoremAngle(sideBC, sideAC, sideAB))
@@ -150,4 +136,4 @@ public:
 		else
 			throw "Вы ввели не число";
 	}
-};
+

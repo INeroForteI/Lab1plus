@@ -1,6 +1,6 @@
 ﻿#include "windows.h"
 #include <iostream>
-#include "TriangleOutputOperations.cpp"
+#include "TriangleOutputOperations.h"
 
 int main()
 {
