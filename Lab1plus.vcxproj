@@ -139,7 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Lab1plus.cpp" />
+    <ClCompile Include="ConsoleMenu.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="TriangleOperations.cpp" />
     <ClCompile Include="TriangleOutputOperations.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -148,7 +150,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConsoleMenu.h" />
     <ClInclude Include="Triangle.h" />
+    <ClInclude Include="TriangleOperations.h" />
     <ClInclude Include="TriangleOutputOperations.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

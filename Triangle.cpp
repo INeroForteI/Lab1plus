@@ -27,12 +27,15 @@ Triangle::Triangle(double side1, double side2, double side3)
 			sideBC = side3;
 			angleA = cosTheoremAngle(sideAB, sideAC, sideBC);
 			angleB = cosTheoremAngle(sideAB, sideBC, sideAC);
-			angleC = sumOfInteriorAngels - angleA - angleB;
+			angleC = kSumOfInteriorAngels - angleA - angleB;
 		}
 		else
 			throw "Некоректные длинны";
 	}
-double Triangle::getSideAB() { return sideAB; }
+Triangle::~Triangle()
+{}
+double Triangle::getSideAB()
+{ return sideAB; }
 void Triangle::setSideAB(double ab)
 	{
 		if (typeid(ab) == typeid(double))
@@ -42,7 +45,7 @@ void Triangle::setSideAB(double ab)
 					sideAB = ab;
 					angleC = cosTheoremAngle(sideBC, sideAC, sideAB);
 					angleB = cosTheoremAngle(sideAB, sideBC, sideAC);
-					angleA = sumOfInteriorAngels - angleB - angleC;
+					angleA = kSumOfInteriorAngels - angleB - angleC;
 				}
 				else
 					throw "Сторона слишком длинная";
@@ -51,7 +54,8 @@ void Triangle::setSideAB(double ab)
 		else
 			throw "Вы ввели не число";
 	}
-double Triangle::getSideBC() { return sideBC; }
+double Triangle::getSideBC() 
+{ return sideBC; }
 void Triangle::setSideBC(double bc)
 	{
 		if (typeid(bc) == typeid(double))
@@ -62,7 +66,7 @@ void Triangle::setSideBC(double bc)
 					sideBC = bc;
 					angleA = cosTheoremAngle(sideAC, sideAB, sideBC);
 					angleB = cosTheoremAngle(sideAB, sideBC, sideAC);
-					angleC = sumOfInteriorAngels - angleB - angleA;
+					angleC = kSumOfInteriorAngels - angleB - angleA;
 				}
 				else
 					throw "Сторона слишком длинная";
@@ -72,7 +76,8 @@ void Triangle::setSideBC(double bc)
 		else
 			throw "Вы ввели не число";
 	}
-double Triangle::getSideAC() { return sideAC; }
+double Triangle::getSideAC()
+{ return sideAC; }
 void Triangle::setSideAC(double ac)
 	{
 		if (typeid(ac) == typeid(double))
@@ -83,7 +88,7 @@ void Triangle::setSideAC(double ac)
 					sideAC = ac;
 					angleB = cosTheoremAngle(sideBC, sideAB, sideAC);
 					angleA = cosTheoremAngle(sideAC, sideAB, sideBC);
-					angleC = sumOfInteriorAngels - angleB - angleA;
+					angleC = kSumOfInteriorAngels - angleB - angleA;
 				}
 				else
 					throw "Сторона слишком длинная";
@@ -94,13 +99,18 @@ void Triangle::setSideAC(double ac)
 			throw "Вы ввели не число";
 	}
 
-double Triangle::getAngleA() { return angleA; }
+double Triangle::getAngleA()
+{ return angleA; }
 void Triangle::setAngleA(double a)
 	{
 		if (typeid(a) == typeid(double))
 			if (a != cosTheoremAngle(sideAC, sideAB, sideBC))
 				if (a > 0 && a < 180)
-					setSideBC(cosTheoremSide(sideAC, sideAB, a));
+				{
+					sideBC = cosTheoremSide(sideAC, sideAB, a);
+					angleC = cosTheoremAngle(sideBC, sideAC, sideAB);
+					angleB = kSumOfInteriorAngels - angleA - angleC;
+				}
 				else
 					throw "Некоректный угол";
 			else
@@ -108,13 +118,18 @@ void Triangle::setAngleA(double a)
 		else
 			throw "Вы ввели не число";
 	}
-double Triangle::getAngleB() { return angleB; }
+double Triangle::getAngleB()
+{ return angleB; }
 void Triangle::setAngleB(double b)
 	{
 		if (typeid(b) == typeid(double))
 			if (b != cosTheoremAngle(sideBC, sideAB, sideAC))
 				if (b > 0 && b < 180)
-					setSideAC(cosTheoremSide(sideBC, sideAB, b));
+				{
+					sideAC = cosTheoremSide(sideBC, sideAB, b);
+					angleA = cosTheoremAngle(sideAC, sideAB, sideBC);
+					angleC = kSumOfInteriorAngels - angleA - angleB;
+				}
 				else
 					throw "Некоректный угол";
 			else
@@ -122,13 +137,18 @@ void Triangle::setAngleB(double b)
 		else
 			throw "Вы ввели не число";
 	}
-double Triangle::getAngleC() { return angleC; }
+double Triangle::getAngleC()
+{ return angleC; }
 void Triangle::setAngleC(double c)
 	{
 		if (typeid(c) == typeid(double))
 			if (c != cosTheoremAngle(sideBC, sideAC, sideAB))
 				if (c > 0 && c < 180)
-					setSideAB(cosTheoremSide(sideAC, sideBC, c));
+				{
+					sideAB = cosTheoremSide(sideAC, sideBC, c);
+					angleA = cosTheoremAngle(sideAB, sideAC, sideBC);
+					angleB = kSumOfInteriorAngels - angleA - angleC;
+				}
 				else
 					throw "Некоректный угол";
 			else

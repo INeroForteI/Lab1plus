@@ -5,13 +5,14 @@
 class Triangle
 {
 private:
+
 	double sideAB;
 	double sideBC;
 	double sideAC;
 	double angleA;
 	double angleB;
 	double angleC;
-	const double sumOfInteriorAngels = 180;
+	const double kSumOfInteriorAngels = 180;
 	const double pi = 3.141592;
 
 	bool isTriangle(double side1, double side2, double side3);
@@ -19,8 +20,10 @@ private:
 	double cosTheoremSide(double contiguousSide1, double contiguousSide2, double angle);
 
 public:
+	~Triangle();
 	Triangle();
 	Triangle(double side1, double side2, double side3);
+
 	double getSideAB();
 	void setSideAB(double ab);
 	double getSideBC();
