@@ -34,6 +34,7 @@ Triangle::Triangle(double side1, double side2, double side3)
 	}
 Triangle::~Triangle()
 {}
+
 double Triangle::getSideAB()
 { return sideAB; }
 void Triangle::setSideAB(double ab)
